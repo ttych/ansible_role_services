@@ -1,2 +1,2 @@
 ---
-# tasks file for ansible_role_services
+- include_tasks: services_workspace.yml

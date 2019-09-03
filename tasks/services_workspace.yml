@@ -1,0 +1,40 @@
+---
+- name: set services_path
+  set_fact: {
+    services_path: "{{ services_path | default(default_services_path) }}"
+  }
+
+- name: check current status
+  stat:
+    path: "{{ services_path }}"
+  register: services_status
+
+- block:
+    - name: get root dataset
+      shell: zfs list | grep '\s/$' | cut -d ' ' -f1
+      register: root_dataset
+      changed_when: False
+
+    - name: create services dataset
+      zfs:
+        name: '{{ root_dataset.stdout.split("/")[0] }}/services'
+        state: present
+        extra_zfs_properties:
+          compression: lz4
+          mountpoint: "{{ services_path }}"
+      when: root_dataset.stdout != ''
+
+    - name: create services directory
+      file:
+        path: "{{ services_path }}"
+        state: directory
+      when: root_dataset.stdout == ''
+
+    - name: set services permission
+      file:
+        path: "{{ services_path }}"
+        owner: root
+        group: root
+        mode: '0755'
+
+  when: services_status.stat.exists == False

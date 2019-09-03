@@ -1,2 +1,2 @@
 ---
-# vars file for ansible_role_services
+default_services_path: '/services'
