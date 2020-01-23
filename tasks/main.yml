@@ -1,2 +1,6 @@
 ---
-- include_tasks: services_workspace.yml
+- include_tasks: context.yml
+
+- include_tasks: services_directory_structure.yml
+
+- include_tasks: services_newsyslog.yml
