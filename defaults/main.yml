@@ -2,3 +2,6 @@
 services_dir: /services
 
 root_group: root
+
+services_user: service
+services_group: service
