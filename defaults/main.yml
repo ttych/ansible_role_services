@@ -5,3 +5,6 @@ root_group: root
 
 services_user: service
 services_group: service
+
+services_logger_user: logger
+services_logger_group: logger
