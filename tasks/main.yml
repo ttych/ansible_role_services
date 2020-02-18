@@ -10,4 +10,4 @@
 
 - name: set has_services
   set_fact:
-    has_runit: "{{ want_services }}"
+    has_services: "{{ want_services }}"
