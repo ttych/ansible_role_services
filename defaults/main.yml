@@ -1,4 +1,6 @@
 ---
+want_services: true
+
 services_dir: /services
 
 root_group: root

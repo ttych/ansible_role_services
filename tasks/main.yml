@@ -1,6 +1,13 @@
 ---
-- include_tasks: context.yml
+- block:
+    - include_tasks: context.yml
 
-- include_tasks: services_directory_structure.yml
+    - include_tasks: services_directory_structure.yml
 
-- include_tasks: services_newsyslog.yml
+    - include_tasks: services_newsyslog.yml
+
+  when: want_services
+
+- name: set has_services
+  set_fact:
+    has_runit: "{{ want_services }}"
