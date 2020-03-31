@@ -10,3 +10,17 @@ services_group: service
 
 services_logger_user: logger
 services_logger_group: logger
+
+services_etc_dir: "{{ services_dir }}/etc"
+services_logrotate_d: "{{ services_etc_dir }}/logrotate.d"
+services_log_dir: "{{ services_dir }}/log"
+services_run_dir: "{{ services_dir }}/run"
+
+services_directories:
+  - { path: "{{ services_dir }}", owner: root, group: "{{ root_group }}", mode: "0755" }
+  - { path: "{{ services_etc_dir }}", owner: root, group: "{{ services_group }}", mode: "0755" }
+  - { path: "{{ services_logrotate_d }}", owner: root, group: "{{ services_group }}", mode: "0755" }
+  - { path: "{{ services_log_dir }}", owner: root, group: "{{ services_group }}", mode: "0775" }
+  - { path: "{{ services_run_dir }}", owner: root, group: "{{ services_group }}", mode: "0775" }
+
+logrotate_conf: /etc/logrotate.conf

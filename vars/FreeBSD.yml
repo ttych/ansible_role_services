@@ -2,8 +2,9 @@
 root_group: wheel
 
 services_newsyslog_dir: "{{ services_etc_dir }}/newsyslog.conf.d"
+newsyslog_conf_file: /etc/newsyslog.conf
 
 services_directories_distribution:
   - { path: "{{ services_newsyslog_dir }}", owner: root, group: "{{ root_group }}", mode: "0755" }
 
-newsyslog_conf_file: /etc/newsyslog.conf
+logrotate_conf: /usr/local/etc/logrotate.conf
